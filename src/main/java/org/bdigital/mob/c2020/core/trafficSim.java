@@ -12,6 +12,7 @@ import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.formats.shapefile.Shapefile;
 import gov.nasa.worldwind.formats.shapefile.ShapefileRecord;
 import gov.nasa.worldwind.formats.shapefile.ShapefileRecordPolyline;
+import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.LatLon;
 import gov.nasa.worldwind.geom.Line;
 import gov.nasa.worldwind.geom.Position;
@@ -52,28 +53,7 @@ public class trafficSim extends ApplicationTemplate{
                 
 	    		try {	   
 	    			
-	    			
-	                RenderableLayer layer = new RenderableLayer();            
-	                //Creating a shapefile based on an ordinary File object
-	                Shapefile shapeFile = new Shapefile(new File("/home/joana/git/traffic_sim/shapes/lines82.shp"));
-	                //Setting attributes for the loaded shapefile
-	                ShapeAttributes normalAttributes = new BasicShapeAttributes();
-	                normalAttributes.setOutlineMaterial(Material.GREEN);
-	                normalAttributes.setOutlineWidth(100);	    			
-	    			
-	                while (shapeFile.hasNext())
-	                {
-	                    ShapefileRecord record = shapeFile.nextRecord();
-	                
-	                    SurfacePolylines shape = new SurfacePolylines(
-	                            Sector.fromDegrees(((ShapefileRecordPolyline) record).getBoundingRectangle()),
-	                            record.getCompoundPointBuffer());
-	                        shape.setAttributes(normalAttributes);	                        
-	                    layer.addRenderable(shape);
-	                }	                
-	                
-	                //Closing shape file
-	                shapeFile.close();
+	    			Layer layer=buildLayer("/home/joana/git/traffic_sim/shapes/lines82.shp");
 	    				           
 	                Layer lBing = getWwd().getModel().getLayers().getLayerByName("Bing Imagery");
 	                lBing.setEnabled(true);
@@ -94,10 +74,11 @@ public class trafficSim extends ApplicationTemplate{
 	    			
 	                View view = this.getWwd().getView();
 	                //Globe globe = this.getWwd().getModel().getGlobe();
+	                Angle a=Angle.fromDegrees(45.0);
 	                if(view instanceof BasicOrbitView) {
 	                        BasicOrbitView bov = (BasicOrbitView)view;
 	                                                bov.stopAnimations();
-	                                                bov.addPanToAnimator(pos, view.getHeading(), view.getPitch(), 2000);
+	                                                bov.addPanToAnimator(pos, view.getHeading(), /*view.getPitch()*/a, 2000);
 	                }                
 	    		} catch (Exception e) {
 	    			e.printStackTrace();
@@ -105,6 +86,7 @@ public class trafficSim extends ApplicationTemplate{
                 
 	        }
 	        
+	        	        
 		    public static void main(String[] args)
 		    {
 		        ApplicationTemplate.start("Traffic Forecast on NASA World Wind", AppFrame.class);
@@ -117,7 +99,35 @@ public class trafficSim extends ApplicationTemplate{
 			    record.getCompoundPointBuffer());
 			    shape.setAttributes(attrs);
 			    return shape;
-		    }		    
+		    }
+		    
+		    protected Layer buildLayer(String path){
+		    	
+                RenderableLayer layer = new RenderableLayer();            
+                //Creating a shapefile based on an ordinary File object
+                Shapefile shapeFile = new Shapefile(new File(path));
+                //Setting attributes for the loaded shapefile
+                ShapeAttributes normalAttributes = new BasicShapeAttributes();
+                normalAttributes.setOutlineMaterial(Material.GREEN);
+                normalAttributes.setOutlineWidth(100);	    			
+    			
+                while (shapeFile.hasNext())
+                {
+                    ShapefileRecord record = shapeFile.nextRecord();
+                
+                    SurfacePolylines shape = new SurfacePolylines(
+                            Sector.fromDegrees(((ShapefileRecordPolyline) record).getBoundingRectangle()),
+                            record.getCompoundPointBuffer());
+                        shape.setAttributes(normalAttributes);	                        
+                    layer.addRenderable(shape);
+                }	                
+                
+                //Closing shape file
+                shapeFile.close();
+		    	
+                return layer;
+		    	
+		    }
 	        
 	    }
 }
