@@ -38,10 +38,10 @@ import gov.nasa.worldwindx.examples.util.ShapefileLoader;
  * @version 0.1 06/11/2014
  */
 public class trafficSim extends ApplicationTemplate{
-		private static double miny=41.648;
-		private static double maxy=41.650;
-		private static double minx=-0.858291;
-		private static double maxx=-0.85557;
+		private static double miny=41.634;//41.648;
+		private static double maxy=41.655;//41.650;
+		private static double minx=-0.876;//-0.858291;
+		private static double maxx=-0.853;//-0.85557;
 		
 	    public static class AppFrame extends ApplicationTemplate.AppFrame
 	    {
@@ -55,12 +55,16 @@ public class trafficSim extends ApplicationTemplate{
 	    			
 	    			Layer t82=buildLayer("/home/joana/git/traffic_sim/shapes/lines82.shp",Material.GREEN,"Tramo 82");
 	    			Layer t83=buildLayer("/home/joana/git/traffic_sim/shapes/lines83.shp",Material.RED,"Tramo 83");
+	    			Layer t88=buildLayer("/home/joana/git/traffic_sim/shapes/lines88.shp",Material.BLUE,"Tramo 88");
+	    			Layer t89=buildLayer("/home/joana/git/traffic_sim/shapes/lines89.shp",Material.LIGHT_GRAY,"Tramo 89");
 	    				           
 	                Layer lBing = getWwd().getModel().getLayers().getLayerByName("Bing Imagery");
 	                lBing.setEnabled(true);
 	                
 	                insertBeforeCompass(getWwd(), t82);
 	                insertBeforeCompass(getWwd(), t83);
+	                insertBeforeCompass(getWwd(), t88);
+	                insertBeforeCompass(getWwd(), t89);
 	                
 	                // Update layer panel
 	                this.getLayerPanel().update(this.getWwd());
@@ -81,7 +85,7 @@ public class trafficSim extends ApplicationTemplate{
 	                if(view instanceof BasicOrbitView) {
 	                        BasicOrbitView bov = (BasicOrbitView)view;
 	                                                bov.stopAnimations();
-	                                                bov.addPanToAnimator(pos, view.getHeading(), /*view.getPitch()*/a, 2000);
+	                                                bov.addPanToAnimator(pos, view.getHeading(), /*view.getPitch()*/a, 3000);
 	                }                
 	    		} catch (Exception e) {
 	    			e.printStackTrace();
