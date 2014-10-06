@@ -53,12 +53,15 @@ public class trafficSim extends ApplicationTemplate{
                 
 	    		try {	   
 	    			
-	    			Layer layer=buildLayer("/home/joana/git/traffic_sim/shapes/lines82.shp");
+	    			Layer t82=buildLayer("/home/joana/git/traffic_sim/shapes/lines82.shp",Material.GREEN,"Tramo 82");
+	    			Layer t83=buildLayer("/home/joana/git/traffic_sim/shapes/lines83.shp",Material.RED,"Tramo 83");
 	    				           
 	                Layer lBing = getWwd().getModel().getLayers().getLayerByName("Bing Imagery");
 	                lBing.setEnabled(true);
 	                
-	                insertBeforeCompass(getWwd(), layer);
+	                insertBeforeCompass(getWwd(), t82);
+	                insertBeforeCompass(getWwd(), t83);
+	                
 	                // Update layer panel
 	                this.getLayerPanel().update(this.getWwd());
 	    		    
@@ -101,14 +104,15 @@ public class trafficSim extends ApplicationTemplate{
 			    return shape;
 		    }
 		    
-		    protected Layer buildLayer(String path){
+		    protected Layer buildLayer(String path, Material m, String name){
 		    	
-                RenderableLayer layer = new RenderableLayer();            
+                RenderableLayer layer = new RenderableLayer();
+                layer.setName(name);
                 //Creating a shapefile based on an ordinary File object
                 Shapefile shapeFile = new Shapefile(new File(path));
                 //Setting attributes for the loaded shapefile
                 ShapeAttributes normalAttributes = new BasicShapeAttributes();
-                normalAttributes.setOutlineMaterial(Material.GREEN);
+                normalAttributes.setOutlineMaterial(m);
                 normalAttributes.setOutlineWidth(100);	    			
     			
                 while (shapeFile.hasNext())
