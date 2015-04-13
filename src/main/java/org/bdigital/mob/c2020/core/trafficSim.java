@@ -108,7 +108,7 @@ public class trafficSim extends ApplicationTemplate{
 	            
 	            removeBaseLayers();
 	            
-				JLabel labelTextField = new JLabel("Enter city");
+				JLabel labelTextField = new JLabel("Weather Conditions: dry, good visibility, strong winds;");
 				// Add controls
 				
 				GridLayout experimentLayout = new GridLayout(0,2);
@@ -157,12 +157,12 @@ public class trafficSim extends ApplicationTemplate{
 	    					
 	    			LatLon centroid=boundingSector.getCentroid();
 	    			Position pos=new Position(centroid.getLatitude(),
-	    					centroid.getLongitude(),800);
+	    					centroid.getLongitude(),1000);
 	    			
 	    			
 	                View view = this.getWwd().getView();
 	                //Globe globe = this.getWwd().getModel().getGlobe();
-	                Angle a=Angle.fromDegrees(45.0);
+	                Angle a=Angle.fromDegrees(40.0);
 	                if(view instanceof BasicOrbitView) {
 	                        BasicOrbitView bov = (BasicOrbitView)view;
 	                                                bov.stopAnimations();
@@ -364,6 +364,8 @@ public class trafficSim extends ApplicationTemplate{
 					 {
 				
 		                RenderableLayer outLayer = new RenderableLayer();
+		                //outLayer.setOpacity(0.1);
+		                outLayer.setEnabled(false);
 		                outLayer.setPickEnabled(false);
 		                outLayer.setName("Actividad en las Redes Sociales");
 
@@ -377,22 +379,19 @@ public class trafficSim extends ApplicationTemplate{
 		    			Sector boundingSector = Sector.boundingSector(p1,p2);
 			    				    					    			
 						 surface.setSector(boundingSector);
-						 surface.setAltitude(500/*400e3*/);
+						 surface.setAltitude(200/*400e3*/);
 						 surface.setDimensions(width, height);
 						 surface.setClientLayer(outLayer);
 						 outLayer.addRenderable(surface);
 						 BufferWrapper firstBuffer = randomGridValues(width, height, minValue, maxValue);
 						 BufferWrapper secondBuffer = randomGridValues(width, height, minValue * 2d, maxValue / 2d);
-						 
-		                 //final Integer a=randInt(1,400);
-		                 
-		                 //System.out.println(a);
 		                 
 						 surface.setValues(createMixedColorGradientGridValues(
 						 11.0, firstBuffer, secondBuffer, minValue, maxValue, minHue, maxHue));
 
 						 AnalyticSurfaceAttributes attr = new AnalyticSurfaceAttributes();
 						 attr.setShadowOpacity(0);
+						 
 						 surface.setSurfaceAttributes(attr);
 						 final double altitude = surface.getAltitude();
 						 final double verticalScale = surface.getVerticalScale();

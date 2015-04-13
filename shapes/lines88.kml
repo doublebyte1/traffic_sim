@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>lines88</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#lines88">
+		<SimpleData name="field_1">41.63748</SimpleData>
+		<SimpleData name="field_2">-0.8687</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-0.8687,41.63748</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#lines88">
+		<SimpleData name="field_1">41.63719</SimpleData>
+		<SimpleData name="field_2">-0.86823</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-0.86823,41.63719</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#lines88">
+		<SimpleData name="field_1">41.63694</SimpleData>
+		<SimpleData name="field_2">-0.86771</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-0.86771,41.63694</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#lines88">
+		<SimpleData name="field_1">41.63675</SimpleData>
+		<SimpleData name="field_2">-0.86702</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>-0.86702,41.63675</coordinates></Point>
+  </Placemark>
+</Folder>
+<Schema name="lines88" id="lines88">
+	<SimpleField name="field_1" type="float"></SimpleField>
+	<SimpleField name="field_2" type="float"></SimpleField>
+</Schema>
+</Document></kml>

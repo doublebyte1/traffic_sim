@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>lines82</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#lines82">
+		<SimpleData name="group">1</SimpleData>
+		<SimpleData name="begin">1.0</SimpleData>
+		<SimpleData name="end">12.0</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>relativeToGround</altitudeMode><coordinates>-0.856635468595698,41.650065007313643 -0.856635468595698,41.650065007313643 -0.856228694495896,41.649961903544742 -0.856123581711052,41.649908425514752 -0.856093735957001,41.649819169074412 -0.856115528582465,41.649625723890232 -0.856200947691886,41.649312654009861 -0.856230298877851,41.649061558931727 -0.856174480677022,41.648935623263341 -0.856070237969452,41.648822269748457 -0.85587134282846,41.648719496201927 -0.855719999178862,41.648599999969449 -0.855569999178475,41.648019999969442</coordinates></LineString>
+  </Placemark>
+</Folder>
+<Schema name="lines82" id="lines82">
+	<SimpleField name="group" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+</Schema>
+</Document></kml>
